@@ -8,7 +8,6 @@ import jakarta.persistence.Id;
 @Entity
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String productId;
     private String productName,description;
     private Double price;
@@ -28,7 +27,7 @@ public class Product {
         return productId;
     }
 
-    public void setProductId(Integer ProductId) {
+    public void setProductId(String ProductId) {
         this.productId = productId;
     }
 
@@ -63,8 +62,5 @@ public class Product {
     public void setStock(Integer stock) {
         this.stock = stock;
     }
-
-
-
 
 }
