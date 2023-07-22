@@ -5,6 +5,7 @@ import com.Management.ProductListing.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -22,22 +23,27 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getProductById(Integer productId) {
+    public Product getProductById(String productId) {
         return productRepository.findById(productId).get();
     }
 
     @Override
-    public String deleteProductById(Integer productId) {
-        Product product=productRepository.findById(productId).get();
-        if(product!=null) {
-            productRepository.deleteById(productId);
-            return "Product Delete Successfully";
+    public List<Product> deleteProductById(String productId) {
+        try {
+            Product product = productRepository.findById(productId).get();
+            if (product != null) {
+                productRepository.deleteById(productId);
+            }
+        } catch (Exception e) {
+            System.out.println("Error");
         }
-        else return "Something went wrong";
+        finally {
+            return productRepository.findAll();
+        }
     }
 
     @Override
-    public Product updateProduct(Product product,Integer productId) {
+    public Product updateProduct(Product product,String productId) {
         Product oldProduct=productRepository.findById(productId).get();
         oldProduct.setProductName(product.getProductName());
         oldProduct.setDescription(product.getDescription());

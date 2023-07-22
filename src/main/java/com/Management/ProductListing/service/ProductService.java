@@ -8,9 +8,9 @@ public interface ProductService {
 
     public Product saveProduct(Product product);
     public List<Product> getAllProduct();
-    public Product getProductById(Integer productId);
-    public String deleteProductById(Integer productId);
-    public Product updateProduct(Product product,Integer productId);
+    public Product getProductById(String productId);
+    public List<Product> deleteProductById(String productId);
+    public Product updateProduct(Product product,String productId);
 
 }
 

@@ -8,8 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @Controller
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/")
 public class ProductController {
     @Autowired
     private ProductService productService;
@@ -21,22 +22,22 @@ public class ProductController {
     public ResponseEntity<?>saveProduct(@RequestBody Product product){
         return new ResponseEntity<>(productService.saveProduct(product), HttpStatus.CREATED);
     }
-    @GetMapping("/")
+    @GetMapping("/products")
     public ResponseEntity<?>getAllProduct(){
         return new ResponseEntity<>(productService.getAllProduct(),HttpStatus.OK);
     }
 
     @GetMapping("/{productId}")
-    public  ResponseEntity<?>getProductById(@PathVariable Integer productId){
+    public  ResponseEntity<?>getProductById(@PathVariable String productId){
         return new ResponseEntity<>(productService.getProductById(productId),HttpStatus.OK);
     }
-    @GetMapping("/deleteProduct/{productId}")
-    public  ResponseEntity<?>deleteProductById(@PathVariable Integer productId){
+    @DeleteMapping("/deleteProduct/{productId}")
+    public  ResponseEntity<?>deleteProductById(@PathVariable String productId){
         return new ResponseEntity<>(productService.deleteProductById(productId),HttpStatus.OK);
     }
 
-    @PostMapping("/updateProduct/{productId}")
-    public ResponseEntity<?>updateProduct(@RequestBody Product product,@PathVariable Integer productId){
+    @PutMapping("/updateProduct/{productId}")
+    public ResponseEntity<?>updateProduct(@RequestBody Product product,@PathVariable String productId){
         return new ResponseEntity<>(productService.updateProduct(product,productId), HttpStatus.CREATED);
     }
 
