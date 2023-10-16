@@ -1,1 +1,6 @@
+com\Management\ProductListing\service\ProductService.class
+com\Management\ProductListing\model\Product.class
+com\Management\ProductListing\controller\ProductController.class
+com\Management\ProductListing\repository\ProductRepository.class
 com\Management\ProductListing\ProductListingApiApplication.class
+com\Management\ProductListing\service\ProductServiceImpl.class
