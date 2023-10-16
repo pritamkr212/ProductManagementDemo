@@ -4,7 +4,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,7 +16,7 @@ public class GeneralInterceptor implements HandlerInterceptor {
 
     private Logger logger= LoggerFactory.getLogger(GeneralInterceptor.class);
     @Override
-    @Async("asyncExecution")
+    @Async("AsyncExecutor")
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         logger.info("preHandle is invoked...{}: {}",request.getRequestURI(),request.getMethod());
