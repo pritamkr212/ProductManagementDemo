@@ -26,14 +26,17 @@ public class GeneralInterceptor implements HandlerInterceptor {
         }
         return true;
     }
-
     @Override
     @Async("asyncExecution")
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         logger.info("postHandle is invoked...{}: {}",request.getRequestURI(),request.getMethod());
-
+        if(response.getStatus()==201){
+            logger.info("Processed SuccessFully ID: {}",response.getHeader("X-Response-ID"));
+        }
+        else{
+            logger.debug("Processed Failed ID: {}",response.getHeader("X-Response-ID"));
+        }
     }
-
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         HandlerInterceptor.super.afterCompletion(request, response, handler, ex);

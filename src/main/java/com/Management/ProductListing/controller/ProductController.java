@@ -5,6 +5,7 @@ import com.Management.ProductListing.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,9 +25,11 @@ public class ProductController {
 
     @PostMapping("/saveProduct")
     public ResponseEntity<?>saveProduct(@RequestBody Product product){
-        logger.debug("Getting New Product {}",product.getProductId());
-        ResponseEntity<?>res= new ResponseEntity<>(productService.saveProduct(product), HttpStatus.CREATED);
-        logger.debug("Saving Products {}" ,product.getProductId());
+        logger.debug("Saving New Product {}",product.getProductId());
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.add("X-Response-ID", product.getProductId());
+        ResponseEntity<?>res= new ResponseEntity<>(productService.saveProduct(product),responseHeaders, HttpStatus.CREATED);
+        logger.debug("Saved New Product {}" ,product.getProductId());
         return res;
     }
     @GetMapping("/products")

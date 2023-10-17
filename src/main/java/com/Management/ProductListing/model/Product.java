@@ -29,7 +29,7 @@ public class Product {
         return productId;
     }
 
-    public void setProductId(String ProductId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
