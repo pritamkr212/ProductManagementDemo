@@ -7,18 +7,18 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Product {
-    // make productId
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String productId;
+    @Id
+    private String id;
     private String productName,description;
     private Double price;
     private Integer stock;
 
     public Product(){}
 
-    public Product( String productId, String productName, String description, Double price, Integer stock) {
+    public Product( String productId,String id, String productName, String description, Double price, Integer stock) {
         this.productId = productId;
+        this.id=id;
         this.productName = productName;
         this.description = description;
         this.price = price;
@@ -32,7 +32,13 @@ public class Product {
     public void setProductId(String productId) {
         this.productId = productId;
     }
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
     public String getProductName() {
         return productName;
     }
