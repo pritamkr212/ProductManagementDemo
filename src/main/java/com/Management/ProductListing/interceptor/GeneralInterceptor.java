@@ -38,7 +38,7 @@ public class GeneralInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         logger.info("postHandle is invoked...{}: {}",request.getRequestURI(),request.getMethod());
         if(response.getStatus()==201){
-            EventLog eventLog=new EventLog(response.getHeader("X-Response-ID"), Instant.from(DateTimeFormatter.ISO_INSTANT.parse((response.getHeader("createdTime")))),Instant.now(),null, request.getMethod(), response.getStatus(),Duration.between(Instant.from(DateTimeFormatter.ISO_INSTANT.parse(response.getHeader("createdTime"))), Instant.now()).toMillis());
+            EventLog eventLog=new EventLog(response.getHeader("X-Response-ID"),Long.parseLong((response.getHeader("createdTime"))),Instant.now().getEpochSecond(),null, request.getMethod(), response.getStatus(),(Instant.now().getEpochSecond()-Long.parseLong((response.getHeader("createdTime")))));
             logger.info("Processed SuccessFully ID: {}",response.getHeader("X-Response-ID"));
             logger.info("Event Completed for ID {} ,{}",response.getHeader("X-Response-ID"),eventLog);
             eventLogService.saveEvent(eventLog);

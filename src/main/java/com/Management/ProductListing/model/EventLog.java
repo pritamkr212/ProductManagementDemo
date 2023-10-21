@@ -4,20 +4,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
-import java.time.Instant;
 @Entity
 public class EventLog {
     @Id
     private String id; // An identifier for the log entry
-    private Instant createTime; // Timestamp when the event started
-    private Instant finishTime; // Timestamp when the event finished
+    private Long createTime; // Timestamp when the event started
+    private Long finishTime; // Timestamp when the event finished
     private String user; // User who initiated the event
     private String apiEndpoint; // API endpoint that was accessed
     private int status; // Status of the event (e.g., "Success" or "Failure")
     private long responseTime; // Response time in milliseconds
 
-    public EventLog(String id, Instant createTime, Instant finishTime, String user, String apiEndpoint, int status, long responseTime) {
+    public EventLog(String id, Long createTime, Long finishTime, String user, String apiEndpoint, int status, long responseTime) {
         this.id = id;
         this.createTime = createTime;
         this.finishTime = finishTime;
@@ -35,19 +33,19 @@ public class EventLog {
         this.id = id;
     }
 
-    public Instant getCreateTime() {
+    public Long getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Instant createTime) {
+    public void setCreateTime(Long createTime) {
         this.createTime = createTime;
     }
 
-    public Instant getFinishTime() {
+    public Long getFinishTime() {
         return finishTime;
     }
 
-    public void setFinishTime(Instant finishTime) {
+    public void setFinishTime(Long finishTime) {
         this.finishTime = finishTime;
     }
 

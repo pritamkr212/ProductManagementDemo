@@ -36,9 +36,9 @@ public class ProductController {
     public ResponseEntity<?>saveProduct(@RequestBody Product product) throws Exception {
         logger.debug("Saving New Product {}",product.getProductId());
         HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.add("createdTime", String.valueOf(Instant.now()));
+        responseHeaders.add("createdTime", String.valueOf(Instant.now().getEpochSecond()));
         String id= uuidConversion.StringToUUID(product.getProductId().toLowerCase());
-        EventLog eventLog=new EventLog(id,Instant.now(),null,null,"/saveProduct",-1,-1);
+        EventLog eventLog=new EventLog(id,Instant.now().getEpochSecond(),null,null,"/saveProduct",-1,-1);
         logger.debug("New Event {}" ,eventLog);
         eventLogService.saveEvent(eventLog);
 
