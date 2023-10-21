@@ -7,10 +7,7 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Product {
-    // make productId variable by inserting in to database
-//    public static void main(String[] args) {
-//
-//    }
+    // make productId
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String productId;
@@ -27,11 +24,12 @@ public class Product {
         this.price = price;
         this.stock = stock;
     }
+
     public String getProductId() {
         return productId;
     }
 
-    public void setProductId(String ProductId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
