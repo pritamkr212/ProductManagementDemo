@@ -13,16 +13,19 @@ public class Product {
     private String productName,description;
     private Double price;
     private Integer stock;
+    private Attachment attachment;
 
     public Product(){}
 
-    public Product( String productId,String id, String productName, String description, Double price, Integer stock) {
+    public Product( String productId,String id, String productName, String description, Double price, Integer stock,Attachment attachment) {
         this.productId = productId;
         this.id=id;
         this.productName = productName;
         this.description = description;
         this.price = price;
         this.stock = stock;
+        this.attachment=attachment;
+
     }
 
     public String getProductId() {
@@ -71,4 +74,24 @@ public class Product {
         this.stock = stock;
     }
 
+    public Attachment getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(Attachment attachment) {
+        this.attachment = attachment;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId='" + productId + '\'' +
+                ", id='" + id + '\'' +
+                ", productName='" + productName + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", stock=" + stock +
+                ", attachment=" + attachment +
+                '}';
+    }
 }
